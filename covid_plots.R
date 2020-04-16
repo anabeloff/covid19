@@ -48,14 +48,14 @@ covid_plot <- function(dataset = NA, title_caption = NA) {
   
   pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
     xlab("Total Cases") +
-    ylab("Cases per day (week average)") +
+    ylab("Cases per week (average)") +
     labs(title = paste0("Confirmed cases as of", format(last(dataset$Days), " %B %d %Y")),
          caption = title_caption) +
     theme_classic() +
     theme(legend.text = element_text(size=legend_size),
           #legend.title = element_text(size=legend_size, face="bold"),
           legend.title = element_blank(),
-          legend.position = c(0.15, 0.85),
+          legend.position = "none",
           plot.title = element_text(size = title_size, face = "bold"),
           plot.caption = element_text(hjust = 0, face = "italic", size = caption_zise),
           axis.text=element_text(size=12),
@@ -69,7 +69,8 @@ covid_plot <- function(dataset = NA, title_caption = NA) {
   
   pl = pl + geom_point(size = 1.5, shape = 19) +
     geom_line(size = 1) +
-    scale_color_manual(values = colorvector)
+    scale_color_manual(values = colorvector) +
+    facet_wrap(.~Country, ncol = 3, nrow = 3)
   
   return(pl) 
   
