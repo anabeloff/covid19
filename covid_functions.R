@@ -1,7 +1,8 @@
 ## FUNCTIONS ##
 
 # Create data frames for ggplot2
-
+library(dplyr)
+library(tidyr)
 #################################################
 # Create data frame with week average data points
 
