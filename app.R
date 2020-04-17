@@ -16,12 +16,13 @@ library(ggplot2)
 
 # Selected countries list.
 countries = c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China", "Thailand", "France", 'Taiwan*', 
-              "Singapore", "United Kingdom", "Germany", "Poland", "Ukraine", "Portugal")
+              "Singapore", "United Kingdom", "Germany", "Poland", "Ukraine", "Portugal", "India", "Israel", "Turkey")
 countries = sort(countries)
 
 # Figure 1 caption
 fig1_caption = c("Figure 1. On x-axis total cases, on y-axis cases per day (both in log scale). Each data point represents one recorded day.")
 # Figure 2 caption
+fig2_caption = c("Figure 2. On x-axis total cases, on y-axis average cases per week (both in log scale).")
 
 
 # Load data
@@ -70,7 +71,7 @@ ui <- fluidPage(
                                    h3("Country*"), 
                                    choices = checkbox_list,
                                    selected = checkbox_list[c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China", "Thailand", "France")]), width = 1,
-                p("* - Choose 9 countries maximum.")
+                p("* Choose 9 countries maximum.")
             ),
             
             # Show a plot of the generated distribution
@@ -121,7 +122,7 @@ server <- function(input, output) {
         if (input$select_data == 1) {
           covid_plot_byDay(dataset = dt_day[dt_day$Country %in% input$checkGroup,], title_caption = fig1_caption)
         } else {
-          covid_plot(dataset = dt_week[dt_week$Country %in% input$checkGroup,], title_caption = fig1_caption)
+          covid_plot(dataset = dt_week[dt_week$Country %in% input$checkGroup,], title_caption = fig2_caption)
         }
           
     })
