@@ -16,7 +16,8 @@ library(shinythemes)
 
 # Selected countries list.
 countries = c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China", "Thailand", "France", 'Taiwan*', 
-              "Singapore", "United Kingdom", "Germany", "Poland", "Ukraine", "Portugal", "India", "Israel", "Turkey", "Hong Kong")
+              "Singapore", "United Kingdom", "Germany", "Poland", "Ukraine", "Portugal", "India", "Israel", "Turkey", "Hong Kong",
+              "Brazil", "Honduras", "Cuba")
 countries = sort(countries)
 
 # Figure 1 caption
