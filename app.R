@@ -106,7 +106,13 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
 
-
+# Update dataset
+  
+  app_data <- reactive({
+    # invalidate 24 hrs later
+    invalidateLater(1000 * 60 * 60 * 24)
+    source("data.R")
+    })
 
     output$max_val <- renderText({ 
         num_countries = length(input$checkGroup)
@@ -114,6 +120,8 @@ server <- function(input, output) {
     })
   
     output$LinePlot <- renderPlot({
+      app_data()
+      
       
       if(input$select_cases == 1) {
         dt_day = dt_confirmed
