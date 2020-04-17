@@ -94,7 +94,8 @@ ui <- fluidPage(
                 fluidRow(
                   column(8,
                          p("All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html"),
-                           "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")) 
+                           "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")),
+                         p("Last updadte ", textOutput("update", container = span))
                   )
                 )
                
@@ -107,13 +108,13 @@ ui <- fluidPage(
 server <- function(input, output) {
 
 # Update dataset
+  output$update <- renderText({
+    invalidateLater(1000 * 60 * 60 * 12, session = NULL)
+    # source("data.R")
+    format(file.info("data/time_series_covid19_confirmed_global.csv")$ctime," %B %d %Y %H:%M:%S")
+  })
   
-  app_data <- reactive({
-    # invalidate 24 hrs later
-    invalidateLater(1000 * 60 * 60 * 6)
-    source("data.R")
-    })
-
+  
     output$max_val <- renderText({ 
         num_countries = length(input$checkGroup)
         if (num_countries > 9) paste("Number of selected countries MUST NOT be more than 9!")
