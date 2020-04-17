@@ -110,7 +110,7 @@ server <- function(input, output) {
   
   app_data <- reactive({
     # invalidate 24 hrs later
-    invalidateLater(1000 * 60 * 60 * 24)
+    invalidateLater(1000 * 60 * 60 * 6)
     source("data.R")
     })
 
