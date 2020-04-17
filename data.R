@@ -15,9 +15,10 @@ message("Data downloaded.\n")
 # Confirmed
 time_confirmed_global <- read.csv("time_series_covid19_confirmed_global.csv")
 
-# Add Hong Kong
-levels(time_confirmed_global$Country.Region) <- c(levels(time_confirmed_global$Country.Region), "Hong Kong")
+# Add Hong Kong and Macau
+levels(time_confirmed_global$Country.Region) <- c(levels(time_confirmed_global$Country.Region), "Hong Kong", "Macau")
 time_confirmed_global[time_confirmed_global$Province.State == "Hong Kong", 2] <- c("Hong Kong")
+time_confirmed_global[time_confirmed_global$Province.State == "Macau", 2] <- c("Macau")
 
 con_dt <- time_confirmed_global[c(-1,-3,-4)]
 
@@ -33,9 +34,10 @@ message("Confirmed cases saved.\n")
 # Deaths
 time_deaths_global <- read.csv("time_series_covid19_deaths_global.csv")
 
-# Add Hong Kong
-levels(time_deaths_global$Country.Region) <- c(levels(time_deaths_global$Country.Region), "Hong Kong")
+# Add Hong Kong and Macau
+levels(time_deaths_global$Country.Region) <- c(levels(time_deaths_global$Country.Region), "Hong Kong", "Macau")
 time_deaths_global[time_deaths_global$Province.State == "Hong Kong", 2] <- c("Hong Kong")
+time_deaths_global[time_deaths_global$Province.State == "Macau", 2] <- c("Macau")
 
 con_dtD <- time_deaths_global[c(-1,-3,-4)]
 
