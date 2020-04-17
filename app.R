@@ -109,9 +109,7 @@ server <- function(input, output) {
 
 # Update dataset
   output$update <- renderText({
-    invalidateLater(1000 * 60 * 60 * 12, session = NULL)
-    # source("data.R")
-    format(file.info("data/time_series_covid19_confirmed_global.csv")$ctime," %B %d %Y %H:%M:%S")
+    format(file.info("data/time_series_covid19_confirmed_global.csv")$ctime," %B %d %Y")
   })
   
   
