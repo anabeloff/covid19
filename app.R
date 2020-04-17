@@ -73,7 +73,7 @@ ui <- fluidPage(theme = shinytheme("cosmo"),
                 checkboxGroupInput("checkGroup", 
                                    h3("Country*"), 
                                    choices = checkbox_list,
-                                   selected = checkbox_list[c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China", "Thailand", "France")]), width = 1,
+                                   selected = checkbox_list[c("Canada", "US", "Japan", "Korea, South", "Russia", "Hong Kong", "China", "Thailand", "France")]), width = 1,
                 p("* Choose 9 countries maximum.")
             ),
             
