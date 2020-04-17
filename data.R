@@ -34,4 +34,4 @@ saveRDS(dtD_D, "data/dt_deaths.rda")
 saveRDS(dtD, "data/dt_deaths_week.rda")
 
 message("Death cases saved.\n")
-message("COMPLETE!.\n")
+message("COMPLETE!\n")
