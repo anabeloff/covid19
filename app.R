@@ -11,7 +11,7 @@ library(shiny)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
-
+library(shinythemes)
 
 
 # Selected countries list.
@@ -20,10 +20,10 @@ countries = c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China
 countries = sort(countries)
 
 # Figure 1 caption
-fig1_caption = c("Figure 1. SARS-CoV-2 infection rate. Each data point represents one recorded day. On x-axis log scale cases cumulative sum, on y-axis log scale cases per day.
+fig1_caption = c("Figure 1. SARS-CoV-2 pandemic development rate by country. Each data point represents one recorded day.\nOn X-axis cases cumulative sum (log scale). Y-axis shows number of cases per day (log scale).
 ")
 # Figure 2 caption
-fig2_caption = c("Figure 2. SARS-CoV-2 infection rate. Each data point represents week average. On x-axis log scale cases cumulative sum, on y-axis log scale cases week average.
+fig2_caption = c("Figure 2. SARS-CoV-2 pandemic development rate by country. Each data point represents week average of recorded cases.\nOn X-axis cases cumulative sum (log scale). Y-axis shows average number of cases per week (log scale).
 ")
 
 
@@ -54,7 +54,7 @@ source("covid_plots.R")
 
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(
+ui <- fluidPage(theme = shinytheme("cosmo"),
 
     # Application title
     titlePanel(paste0("SARS-CoV-2")),
