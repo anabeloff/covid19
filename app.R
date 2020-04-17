@@ -78,8 +78,7 @@ ui <- fluidPage(
             mainPanel(width = 4,
                       fluidRow(
                           column(12,
-                                 p("Graph allows to see when curve starts flattening. If line starts to bend down that means exponential growth is slowing and reaching the plateau.
-                           All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html")) 
+                                 p("App visualizes  SARS-CoV-2 data to help to see if lockdown efforts are actually paying off. By plotting cases on log scale we can easily see the moment when exponential growth reaches the plateau. Basically, when line starts to bend down that means exponential growth is slowing and reaching the plateau.") 
                           )
                       ),
                 fluidRow(
@@ -88,10 +87,13 @@ ui <- fluidPage(
                            plotOutput("LinePlot", width = "900px", height = "900px"),
                            )
                 ),
+                br(),
+                br(),
                 fluidRow(
-                    column(4,
-                           plotOutput("LinePlot2", width = "900px", height = "900px")
-                    )
+                  column(8,
+                         p("All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html"),
+                           "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")) 
+                  )
                 )
                
             )
