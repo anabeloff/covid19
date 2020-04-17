@@ -20,9 +20,11 @@ countries = c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China
 countries = sort(countries)
 
 # Figure 1 caption
-fig1_caption = c("Figure 1. On x-axis total cases, on y-axis cases per day (both in log scale). Each data point represents one recorded day.")
+fig1_caption = c("Figure 1. SARS-CoV-2 infection rate. Each data point represents one recorded day. On x-axis log scale cases cumulative sum, on y-axis log scale cases per day.
+")
 # Figure 2 caption
-fig2_caption = c("Figure 2. On x-axis total cases, on y-axis average cases per week (both in log scale).")
+fig2_caption = c("Figure 2. SARS-CoV-2 infection rate. Each data point represents week average. On x-axis log scale cases cumulative sum, on y-axis log scale cases week average.
+")
 
 
 # Load data
@@ -116,15 +118,17 @@ server <- function(input, output) {
       if(input$select_cases == 1) {
         dt_day = dt_confirmed
         dt_week = dt_confirmed_week
+        cases = "Confirmed cases"
       } else {
         dt_day = dt_deaths
         dt_week = dt_deaths_week
+        cases = "Deaths"
       }
       
         if (input$select_data == 1) {
-          covid_plot_byDay(dataset = dt_day[dt_day$Country %in% input$checkGroup,], title_caption = fig1_caption)
+          covid_plot_byDay(dataset = dt_day[dt_day$Country %in% input$checkGroup,], title_caption = fig1_caption, title_type = cases)
         } else {
-          covid_plot(dataset = dt_week[dt_week$Country %in% input$checkGroup,], title_caption = fig2_caption)
+          covid_plot(dataset = dt_week[dt_week$Country %in% input$checkGroup,], title_caption = fig2_caption, title_type = cases)
         }
           
     })

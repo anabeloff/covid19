@@ -9,4 +9,6 @@ To run with `shiny` localy:
 runGitHub( "covid19", "anabeloff")
 ```
 
-All data comes from [John Hopkins University Corona virus map.](https://coronavirus.jhu.edu/map.html)
+To update data run `data.R` script.  
+
+All data comes from [John Hopkins University Corona virus map.](https://github.com/CSSEGISandData/COVID-19)

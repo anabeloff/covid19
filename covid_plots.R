@@ -11,14 +11,14 @@ num_colors = 9
 # colorvector = RColorBrewer::brewer.pal(num_colors, "Paired")
 colorvector = c("#80b1d3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#984ea3")
 
-covid_plot_byDay <- function(dataset = NA, title_caption = NA) {
+covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) {
   
 
     
     pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
       xlab("Total Cases") +
       ylab("Cases per day") +
-      labs(title = paste0("Confirmed cases as of", format(last(dataset$Days), " %B %d %Y")),
+      labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
            caption = title_caption) +
       theme_classic() +
       theme(legend.position = "none",
@@ -44,12 +44,12 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA) {
 }
 
 
-covid_plot <- function(dataset = NA, title_caption = NA) {
+covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
   
   pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
     xlab("Total Cases") +
     ylab("Cases per week (average)") +
-    labs(title = paste0("Confirmed cases as of", format(last(dataset$Days), " %B %d %Y")),
+    labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
          caption = title_caption) +
     theme_classic() +
     theme(legend.text = element_text(size=legend_size),
