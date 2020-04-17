@@ -120,8 +120,6 @@ server <- function(input, output) {
     })
   
     output$LinePlot <- renderPlot({
-      app_data()
-      
       
       if(input$select_cases == 1) {
         dt_day = dt_confirmed
