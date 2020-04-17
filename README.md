@@ -1,6 +1,6 @@
 # SARS-CoV-2
 
-App visualizes  SARS-CoV-2 data to see if lockdown efforts are actually paying off. By plotting cases on log scale we can easily see the moment when exponential growth reaches the plateau. Basically, when line starts to bend down that means exponential growth is slowing and reaching the plateau.  
+Visualizing SARS-CoV-2 pandemic development data on log scale allows to see if lockdown efforts are paying off. When plotting cases data on log scale exponential growth appears as straight line going across the plot. But when exponential growth slows down and reaches the plateau the line on the plot starts to bend down.
 
 App deployed at [http://app.anabelov.info/covid19/](http://app.anabelov.info/covid19/)
 
