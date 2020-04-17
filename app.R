@@ -80,7 +80,7 @@ ui <- fluidPage(
             mainPanel(width = 4,
                       fluidRow(
                           column(12,
-                                 p("App visualizes  SARS-CoV-2 data to help to see if lockdown efforts are actually paying off. By plotting cases on log scale we can easily see the moment when exponential growth reaches the plateau. Basically, when line starts to bend down that means exponential growth is slowing and reaching the plateau.") 
+                                 p("App visualizes  SARS-CoV-2 data to see if lockdown efforts are actually paying off. By plotting cases on log scale we can easily see the moment when exponential growth reaches the plateau. Basically, when line starts to bend down that means exponential growth is slowing and reaching the plateau.") 
                           )
                       ),
                 fluidRow(
