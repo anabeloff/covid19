@@ -11,9 +11,20 @@ num_colors = 9
 # colorvector = RColorBrewer::brewer.pal(num_colors, "Paired")
 colorvector = c("#80b1d3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#984ea3")
 
+# Round up for axis ticks
+roundUp <- function(x) 10^ceiling(log10(x))
+
+
+## DAY PLOT
 covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) {
 
+  # axis breaks 
+  brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 3.5))
+  brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 3.5))
+  
     pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
+      scale_y_continuous(breaks = brk_y, labels = format(roundUp(c(0, exp(brk_y[-1]))),digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
+      scale_x_continuous(breaks = brk_x, labels = format(roundUp(c(0, exp(brk_x[-1]))), digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
       xlab("Total Cases") +
       ylab("Cases per day") +
       labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
@@ -40,10 +51,16 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) 
 
 }
 
-
+## WEEK PLOT
 covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
   
+  # axis breaks 
+  brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 3.5))
+  brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 3.5))
+  
   pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
+    scale_y_continuous(breaks = brk_y, labels = format(roundUp(c(0, exp(brk_y[-1]))),digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
+    scale_x_continuous(breaks = brk_x, labels = format(roundUp(c(0, exp(brk_x[-1]))), digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
     xlab("Total Cases") +
     ylab("Cases per week") +
     labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
