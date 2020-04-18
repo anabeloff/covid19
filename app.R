@@ -75,15 +75,15 @@ source("text.R")
 
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(theme = shinytheme("united"),
+ui <- fixedPage(theme = shinytheme("united"),
 
     # Application title
     titlePanel(paste0(main_title)),
 
-
+    
         # Sidebar with a slider input for number of bins 
-        sidebarLayout(position = "right",
-            sidebarPanel(width = 1,
+        sidebarLayout(position = "left",
+            sidebarPanel(width = 3,
               selectInput("select_data",
                           label = "Data by",
                           choices = list("DAY" = 1, "WEEK" = 2), selected = 1),
@@ -91,7 +91,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                           label = "Cases",
                           choices = list("Confirmed" = 1, "Deaths" = 2), selected = 1),
           tabsetPanel(id = "tabs",
-                      tabPanel("Countries",
+                      tabPanel("World",
                                br(),
                                checkboxGroupInput("checkGroup", label = NULL,
                                                   choices = checkbox_list,
@@ -121,21 +121,21 @@ ui <- fluidPage(theme = shinytheme("united"),
             ),
             
             # Show a plot of the generated distribution
-            mainPanel(width = 4,
-                      fluidRow(
-                          column(12,
-                                 p(description_text) 
-                          )
+            mainPanel(width = 9,
+                      fixedRow(
+                        column(12,
+                               p(description_text) 
+                        )
                       ),
-                fluidRow(
-                    column(6,
+              fixedRow(
+                    column(8,
                            span(textOutput("max_val"), style="color:red"),
-                           plotOutput("LinePlot", width = "900px", height = "900px"),
+                           plotOutput("LinePlot", width = "950px", height = "950px"),
                            )
                 ),
                 br(),
                 br(),
-                fluidRow(
+              fixedRow(
                   column(8,
                          p("All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html"), br(),
                            "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")),
