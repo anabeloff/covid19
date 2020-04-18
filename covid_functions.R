@@ -77,7 +77,7 @@ final_dt_day <- function(data_tbl = NA) {
   dt$days <- gsub(".20$", ".2020", dt$days)
   dt$days <- as.Date(dt$days, "%m.%d.%Y")
   
-  dt <- dt %>%
+  dt <- dplyr::group_by(dt, days, Country) %>%
     dplyr::mutate(CPD_sum = log(CPD_sum+1), CPD = log(abs(CPD)+1), Days = days)
   
   

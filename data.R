@@ -49,3 +49,35 @@ saveRDS(dtD, "dt_deaths_week.rda")
 
 message("Death cases saved.\n")
 message("COMPLETE!\n")
+
+
+# CANADA data
+
+# Confirmed
+cdn <- time_confirmed_global[time_confirmed_global$Country.Region == "Canada",]
+cdn$Country.Region <- cdn$Province.State
+
+cdn <- cdn[c(-1,-3,-4)]
+
+cdn_day_C <- final_dt_day(data_tbl = cdn)
+cdn_week_C <- final_dt(data_tbl = cdn)
+
+saveRDS(cdn_day_C, "cdn_day_C.rda")
+saveRDS(cdn_week_C, "cdn_week_C.rda")
+
+# Deaths
+cdnD <- time_deaths_global[time_deaths_global$Country.Region == "Canada",]
+cdnD$Country.Region <- cdnD$Province.State
+
+cdnD <- cdnD[c(-1,-3,-4)]
+
+cdn_day_D <- final_dt_day(data_tbl = cdnD)
+cdn_week_D <- final_dt(data_tbl = cdnD)
+
+saveRDS(cdn_day_D, "cdn_day_D.rda")
+saveRDS(cdn_week_D, "cdn_week_D.rda")
+
+
+
+message("Canada data saved.\n")
+message("COMPLETE!\n")

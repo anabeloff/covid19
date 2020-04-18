@@ -12,9 +12,7 @@ num_colors = 9
 colorvector = c("#80b1d3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#984ea3")
 
 covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) {
-  
 
-    
     pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
       xlab("Total Cases") +
       ylab("Cases per day") +
@@ -28,10 +26,9 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) 
             axis.title=element_text(size=14,face="bold"),
             strip.text.x = element_text(size = 14))
     
-    
-    countries = unique(dataset$Country)
+    #plot colors
+    countries = sort(unique(as.character(dataset$Country)))
     if(length(countries) > num_colors || length(countries) == 0) return(pl)
-    
     names(colorvector) = countries
     
     pl = pl + geom_point(size = 0.5, colour = "#d9d9d9") +
@@ -48,7 +45,7 @@ covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
   
   pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
     xlab("Total Cases") +
-    ylab("Cases per week (average)") +
+    ylab("Cases per week") +
     labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
          caption = title_caption) +
     theme_classic() +
@@ -62,9 +59,9 @@ covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
           axis.title=element_text(size=14,face="bold"),
           strip.text.x = element_text(size = 14))
   
-  countries = unique(dataset$Country)
+  #plot colors
+  countries = sort(unique(as.character(dataset$Country)))
   if(length(countries) > num_colors || length(countries) == 0) return(pl)
-  
   names(colorvector) = countries
   
   pl = pl + geom_point(size = 1.5, shape = 19) +
