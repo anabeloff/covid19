@@ -92,6 +92,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                           choices = list("Confirmed" = 1, "Deaths" = 2), selected = 1),
           tabsetPanel(id = "tabs",
                       tabPanel("Countries",
+                               br(),
                                checkboxGroupInput("checkGroup", label = NULL,
                                                   choices = checkbox_list,
                                                   selected = checkbox_list[c("Canada", "US", "Japan", "Korea, South", "Russia", "Hong Kong", "China", "Thailand", "France")]),
@@ -103,6 +104,7 @@ ui <- fluidPage(theme = shinytheme("united"),
                                br(),
                                ),
                       tabPanel("Canada",
+                               br(),
                                checkboxGroupInput("checkGroup_cnd", label = NULL,
                                                   choices = checkbox_list_cdn,
                                                   selected = checkbox_list_cdn[c("Alberta", "Ontario", "Quebec", "Manitoba", "British Columbia", "Nova Scotia", "Saskatchewan", "Prince Edward Island", "Newfoundland and Labrador")]),
@@ -244,6 +246,8 @@ server <- function(input, output, session) {
           })
         }
     })
+
+
 }
 
 # Run the application 
