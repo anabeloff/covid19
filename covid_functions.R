@@ -37,7 +37,7 @@ final_dt <- function(data_tbl = NA) {
   dt$days <- as.Date(dt$days, "%m.%d.%Y")
   
   dt <- dplyr::group_by(dt, week = format(days, '%W-%Y', ), Country) %>%
-    dplyr::summarise(CPD_sum = log(mean(CPD_sum)+1), CPD = log(mean(abs(CPD))+1), Days = last(days))
+    dplyr::summarise(CPD_sum = log10(mean(CPD_sum)+1), CPD = log10(mean(abs(CPD))+1), Days = last(days))
   
   
   return(dt)
@@ -78,7 +78,7 @@ final_dt_day <- function(data_tbl = NA) {
   dt$days <- as.Date(dt$days, "%m.%d.%Y")
   
   dt <- dplyr::group_by(dt, days, Country) %>%
-    dplyr::mutate(CPD_sum = log(CPD_sum+1), CPD = log(abs(CPD)+1), Days = days)
+    dplyr::mutate(CPD_sum = log10(CPD_sum+1), CPD = log10(abs(CPD)+1), Days = days)
   
   
   return(dt)

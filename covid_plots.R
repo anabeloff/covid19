@@ -19,12 +19,12 @@ roundUp <- function(x) 10^ceiling(log10(x))
 covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) {
 
   # axis breaks 
-  #brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 3.5))
-  #brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 3.5))
+  brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 1))
+  brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 1))
   
     pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
-      #scale_y_continuous(breaks = brk_y, labels = format(roundUp(c(0, exp(brk_y[-1]))),digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
-      #scale_x_continuous(breaks = brk_x, labels = format(roundUp(c(0, exp(brk_x[-1]))), digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
+      scale_y_continuous(breaks = brk_y, labels = format(roundUp(c(0, 10^brk_y[-1])),digits = 1, scientific = FALSE, big.mark = ",", trim = TRUE)) +
+      scale_x_continuous(breaks = brk_x, labels = format(roundUp(c(0, 10^brk_x[-1])), digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
       xlab("Total Cases") +
       ylab("Cases per day") +
       labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
@@ -55,12 +55,12 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) 
 covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
   
   # axis breaks 
-  #brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 3.5))
-  #brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 3.5))
+  brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 1))
+  brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 1))
   
   pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
-    #scale_y_continuous(breaks = brk_y, labels = format(roundUp(c(0, exp(brk_y[-1]))),digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
-    #scale_x_continuous(breaks = brk_x, labels = format(roundUp(c(0, exp(brk_x[-1]))), digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
+    scale_y_continuous(breaks = brk_y, labels = format(roundUp(c(0, 10^brk_y[-1])),digits = 1, scientific = FALSE, big.mark = ",", trim = TRUE)) +
+    scale_x_continuous(breaks = brk_x, labels = format(roundUp(c(0, 10^brk_x[-1])), digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) +
     xlab("Total Cases") +
     ylab("Cases per week") +
     labs(title = paste0(title_type, " as of", format(last(dataset$Days), " %B %d %Y")),
