@@ -6,9 +6,12 @@ App deployed at [http://app.anabelov.info/covid19/](http://app.anabelov.info/cov
 
 To run with `shiny` localy:
 ``` R
+# Update and build data files
+source("data.R")
+
+# run app
 runGitHub( "covid19", "anabeloff")
 ```
-
-To update data run `data.R` script.  
+  
 
 All data comes from [John Hopkins University Corona virus map.](https://github.com/CSSEGISandData/COVID-19)
