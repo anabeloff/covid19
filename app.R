@@ -190,9 +190,9 @@ server <- function(input, output, session) {
     strftime(file.info("data/time_series_covid19_confirmed_global.csv")$mtime, format = " %B %d %Y", tz = "EST5EDT")
   })
   
-  # Limit wrning
+  # Limit warning
   output$max_val <- renderText({ 
-    num_countries = length(input$checkGroup)
+    num_countries = length(ch$check)
     if (num_countries > 9) paste("Number of selected countries MUST NOT be more than 9!")
   })
   
