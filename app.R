@@ -74,7 +74,7 @@ source("covid_plots.R")
 source("text.R")
 
 
-# Define UI for application that draws a histogram
+# Define UI
 ui <- fixedPage(theme = shinytheme("united"),
 
     # Application title
@@ -120,7 +120,7 @@ ui <- fixedPage(theme = shinytheme("united"),
               p("* Choose 9 countries maximum.")
             ),
             
-            # Show a plot of the generated distribution
+            # Main plot pannel
             mainPanel(width = 9,
                       fixedRow(
                         column(12,
@@ -148,7 +148,7 @@ ui <- fixedPage(theme = shinytheme("united"),
     
 )
 
-# Define server logic required to draw a histogram
+# Define server logic
 server <- function(input, output, session) {
   
   # APPLY button
