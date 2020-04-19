@@ -8,8 +8,7 @@ legend_size = 16
 
 # Plot colors
 num_colors = 9
-# colorvector = RColorBrewer::brewer.pal(num_colors, "Paired")
-colorvector = c("#80b1d3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#984ea3")
+colorvector = c("#E31A1C", "#FB9A99", "#80b1d3", "#1F78B4", "#B2DF8A", "#33A02C", "#FDBF6F", "#FF7F00", "#984ea3")
 
 # Round up for axis ticks
 roundUp <- function(x) 10^ceiling(log10(x))
