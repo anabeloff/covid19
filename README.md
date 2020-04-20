@@ -1,6 +1,6 @@
 # SARS-CoV-2
 
-Shiny App to visualize COVID-19 pandemic development. Visualizing SARS-CoV-2 pandemic development data on log scale allows to see if lockdown efforts are paying off. When plotting cases data on log scale exponential growth appears as straight line going across the plot, but when exponential growth slows down and reaches the plateau the line on the plot starts to bend down. Plotting on log scale makes changes in pandemic trend more obvious.  
+Shiny App to visualize SARS-CoV-2 pandemic development. Visualizing pandemic development data on log scale allows to see if lockdown efforts are paying off. When plotting cases data on log scale exponential growth appears as straight line going across the plot, but when exponential growth slows down and reaches the plateau the line on the plot starts to bend down. Plotting on log scale makes changes in pandemic trend more obvious.  
 
 App is deployed at [app.anabelov.info/covid19/](http://app.anabelov.info/covid19/)
 
