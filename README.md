@@ -7,7 +7,7 @@ App is deployed at [app.anabelov.info/covid19/](http://app.anabelov.info/covid19
 Options include:
 - Day/Week: dot on the plot represents cases recorded in one day or average per week.
 - Confirmed cases / Deaths
-- It is Canada centric, separate tab to see situation on provincial level.
+- It is Canada centric, separate tab for provincial data.
 
 Remarks on the countries list:
 - You can select maximum 9 countries at once. Because 3x3 plot looks good.
