@@ -15,17 +15,17 @@ runGitHub( "covid19", "anabeloff")
 
 # Running in Docker 
 
-Build image using provided Dickerfile (or pull exicting image from your repository).
+Build an image using provided Dickerfile (or pull exicting image from your repository).
 ``` bash
 docker build -t shinyser -f Dockerfile .
 ```
 
-Run the following commands:
+Run the container:
 ``` bash
 docker run --rm --detach --name="covid19" -p 3838:3838 --mount type=bind,source="/home/user/covid19",target=/srv/shiny-server/covid19 766815054095.dkr.ecr.ca-central-1.amazonaws.com/shinyser:latest
 ```
-Mount directory or Docker volume containing cloned git repository and attach it to `shiny-server` dir inside the container.  
-To update the data eun `data.R` file inside the container.  
+Mount the directory or Docker volume containing cloned git repository to `shiny-server` dir inside the container.  
+To update the data run `data.R` file inside the container.  
 ``` bash
 docker exec -it -w /srv/shiny-server/covid19 covid19  Rscript data.R
 ```
