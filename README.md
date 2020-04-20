@@ -14,7 +14,7 @@ Remarks on the countries list:
 - I decided to put limited list of countries because full list would be too balky and data for most is limited.
 - Selection is based on my perception of what countries my friends might be interested in.
 
-## Run in R
+## Running in R
 
 If you have installed `shiny` run localy:
 ``` R
