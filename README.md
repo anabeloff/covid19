@@ -6,10 +6,10 @@ App is deployed at [app.anabelov.info/covid19/](http://app.anabelov.info/covid19
 
 Two plot versions:  
 Count by day (fig. 1), grey dots represents cases recorded in one day.  
-![Figure 1]("fig1.png")
+![Figure 1](./www/fig1.png =500x500)
 
 Average count by week (fig 2):  
-![Figure 2]("fig2.png")
+![Figure 2](./www/fig2.png)
 
 Options include:
 - Confirmed cases / Deaths
