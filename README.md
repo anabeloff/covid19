@@ -4,10 +4,18 @@ Shiny App to visualize SARS-CoV-2 pandemic development. Visualizing pandemic dev
 
 App is deployed at [app.anabelov.info/covid19/](http://app.anabelov.info/covid19/)
 
+Two plot versions:  
+Count by day (fig. 1), grey dots represents cases recorded in one day.  
+![Figure 1]("fig1.png")
+
+Average count by week (fig 2):  
+![Figure 2]("fig2.png")
+
 Options include:
-- Day/Week: dot on the plot represents cases recorded in one day or average per week.
 - Confirmed cases / Deaths
 - It is Canada centric, separate tab for provincial data.
+
+
 
 Remarks on the countries list:
 - You can select maximum 9 countries at once. Because 3x3 plot looks good.

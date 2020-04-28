@@ -23,7 +23,7 @@ countries = sort(countries)
 # Check Box list
 checkbox_list <- as.list(countries)
 names(checkbox_list) <- countries
-
+countries_selected = c("Canada", "US", "Japan", "Korea, South", "Russia", "Hong Kong", "China", "Thailand", "France")
 
 # Load data
 # Cases by day
@@ -48,7 +48,7 @@ provinces = c("Alberta", "British Columbia", "Diamond Princess", "Grand Princess
 provinces = sort(provinces)
 checkbox_list_cdn <- as.list(provinces)
 names(checkbox_list_cdn) <- provinces
-
+provinces_selected = c("Alberta", "Ontario", "Quebec", "Manitoba", "British Columbia", "Nova Scotia", "Saskatchewan", "Prince Edward Island", "Newfoundland and Labrador")
 
 
 # Cases by day
@@ -95,7 +95,7 @@ ui <- fixedPage(theme = shinytheme("united"),
                                br(),
                                checkboxGroupInput("checkGroup", label = NULL,
                                                   choices = checkbox_list,
-                                                  selected = checkbox_list[c("Canada", "US", "Japan", "Korea, South", "Russia", "Hong Kong", "China", "Thailand", "France")]),
+                                                  selected = checkbox_list[countries_selected]),
                                actionButton("go1", "APPLY", class="btn btn-primary"),
                                br(),
                                br(),
@@ -107,7 +107,7 @@ ui <- fixedPage(theme = shinytheme("united"),
                                br(),
                                checkboxGroupInput("checkGroup_cnd", label = NULL,
                                                   choices = checkbox_list_cdn,
-                                                  selected = checkbox_list_cdn[c("Alberta", "Ontario", "Quebec", "Manitoba", "British Columbia", "Nova Scotia", "Saskatchewan", "Prince Edward Island", "Newfoundland and Labrador")]),
+                                                  selected = checkbox_list_cdn[provinces_selected]),
                                actionButton("go2", "APPLY", class="btn btn-primary"),
                                br(),
                                br(),
@@ -136,7 +136,7 @@ ui <- fixedPage(theme = shinytheme("united"),
                 br(),
                 br(),
               fixedRow(
-                  column(8,
+                column(8,
                          p("All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html"), br(),
                            "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")),
                          p("Last updadte ", textOutput("update", container = span))
@@ -153,7 +153,7 @@ server <- function(input, output, session) {
   
   # APPLY button
   ch <- reactiveValues(check = FALSE)
-
+  
   observeEvent(input$go1, {
     
     ch$check <- input$checkGroup
@@ -204,7 +204,17 @@ server <- function(input, output, session) {
       
     if(input$tabs == "Canada") {
         
-      if (ch$check == FALSE) ch$check <- input$checkGroup_cnd
+      if (ch$check == FALSE) {
+        # Input on switched tabs
+        ch$check <- input$checkGroup_cnd
+        # 
+        # observe({
+        #   # Update check boxes
+        #   group_ID = "checkGroup_cnd"
+        #   checks_list = checkbox_list_cdn
+        #   updateCheckboxGroupInput(session = session, inputId = group_ID, choices = checks_list, selected=provinces_selected)
+        # })
+      } 
       
         check_boxes <- ch$check
       
@@ -220,7 +230,18 @@ server <- function(input, output, session) {
       }
     } else {
       
-      if (ch$check == FALSE) ch$check <- input$checkGroup
+      if (ch$check == FALSE) {
+        # Input on switched tabs
+        ch$check <- input$checkGroup
+        # 
+        # observe({
+        #   # Update check boxes
+        #   group_ID = "checkGroup"
+        #   checks_list = checkbox_list
+        #   updateCheckboxGroupInput(session = session, inputId = group_ID, choices = checks_list, selected=countries_selected)
+        # })
+        # 
+      } 
       
         check_boxes <- ch$check
       
