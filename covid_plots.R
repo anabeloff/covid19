@@ -20,7 +20,9 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) 
   brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 1))
   brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 1))
   
+  # axis labels
   brk_label_x = roundUp(c(0, 10^brk_x[-1]))
+  # x axis labels transformation for numbers more than 1 million. 
   brk_label_x = ifelse(brk_label_x >= 1e6, paste0(format(round(brk_label_x / 1e6, 1), digits = 0, scientific = FALSE, trim = TRUE), "M"), format(brk_label_x, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE))
   
   brk_label_y = format(roundUp(c(0, 10^brk_y[-1])),digits = 1, scientific = FALSE, big.mark = ",", trim = TRUE)
@@ -61,7 +63,9 @@ covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
   brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 1))
   brk_x = as.numeric(seq(from = 0, to = max(dataset$CPD_sum), by = 1))
   
+  # axis labels
   brk_label_x = roundUp(c(0, 10^brk_x[-1]))
+  # x axis labels transformation for numbers more than 1 million. 
   brk_label_x = ifelse(brk_label_x >= 1e6, paste0(format(round(brk_label_x / 1e6, 1), digits = 0, scientific = FALSE, trim = TRUE), "M"), format(brk_label_x, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE))
   
   brk_label_y = format(roundUp(c(0, 10^brk_y[-1])),digits = 1, scientific = FALSE, big.mark = ",", trim = TRUE)
