@@ -137,9 +137,9 @@ ui <- fixedPage(theme = shinytheme("united"),
                 br(),
               fixedRow(
                 column(8,
-                         p("All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html"), br(),
-                           "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")),
-                         p("Last updadte ", textOutput("update", container = span))
+                       p("All data comes from", a("John Hopkins University Corona virus map.", href = "https://coronavirus.jhu.edu/map.html"), br(),
+                         "Source code on", a("GitHub.", href = "https://github.com/anabeloff/covid19")),
+                       p("Last updadte ", textOutput("update", container = span))
                   )
                 )
                
