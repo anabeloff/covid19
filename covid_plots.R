@@ -14,7 +14,7 @@ colorvector = c("#E31A1C", "#FB9A99", "#80b1d3", "#1F78B4", "#B2DF8A", "#33A02C"
 roundUp <- function(x) 10^ceiling(log10(x))
 
 ## DAY PLOT
-covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) {
+covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA, text_data = NA) {
 
   # axis breaks 
   brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 1))
@@ -24,7 +24,6 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) 
   brk_label_x = roundUp(c(0, 10^brk_x[-1]))
   # x axis labels transformation for numbers more than 1 million. 
   brk_label_x = ifelse(brk_label_x >= 1e6, paste0(format(round(brk_label_x / 1e6, 1), digits = 0, scientific = FALSE, trim = TRUE), "M"), format(brk_label_x, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE))
-  
   brk_label_y = format(roundUp(c(0, 10^brk_y[-1])),digits = 1, scientific = FALSE, big.mark = ",", trim = TRUE)
   
     pl = ggplot(dataset, aes(x = CPD_sum, y = CPD, color = Country, group = Country)) +
@@ -52,12 +51,18 @@ covid_plot_byDay <- function(dataset = NA, title_caption = NA, title_type = NA) 
       scale_color_manual(values = colorvector) +
       facet_wrap(.~Country, ncol = 3, nrow = 3)
     
+    text_data <- text_data[text_data$cases_by == "day", ]
+    text_data <- text_data[text_data$cases_type == title_type, ]
+    text_data <- dplyr::mutate(text_data, label = paste0("Today: ", format(CPD, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE), "\n", "Total: ", format(CPD_sum, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) )
+    
+    pl = pl + geom_text(data = text_data, mapping = aes(x = -Inf, y = Inf, label = label, group = Country), colour = "black", vjust = 1.5, hjust = -0.1, size = 4)
+    
     return(pl) 
 
 }
 
 ## WEEK PLOT
-covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
+covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA, text_data = NA) {
   
   # axis breaks 
   brk_y = as.numeric(seq(from = 0, to = max(dataset$CPD), by = 1))
@@ -97,6 +102,11 @@ covid_plot <- function(dataset = NA, title_caption = NA, title_type = NA) {
     geom_line(size = 1) +
     scale_color_manual(values = colorvector) +
     facet_wrap(.~Country, ncol = 3, nrow = 3)
+  
+  text_data <- text_data[text_data$cases_by == "week", ]
+  text_data <- text_data[text_data$cases_type == title_type, ]
+  text_data <- dplyr::mutate(text_data, label = paste0("Week av.: ", format(CPD, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE), "\n", "Total: ", format(CPD_sum, digits = 0, scientific = FALSE, big.mark = ",", trim = TRUE)) )
+  pl = pl + geom_text(data = text_data, mapping = aes(x = -Inf, y = Inf, label = label, group = Country), colour = "black", vjust = 1.5, hjust = -0.1, size = 4)
   
   return(pl) 
   

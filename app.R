@@ -14,6 +14,9 @@ library(ggplot2)
 library(shinythemes)
 
 
+
+### DATA #########################################################
+
 # Selected countries list.
 countries = c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China", "Thailand", "France", 'Taiwan*', "Italy",
               "Singapore", "United Kingdom", "Germany", "Poland", "Ukraine", "India", "Israel", "Turkey", "Hong Kong",
@@ -40,6 +43,10 @@ dt_deaths <- dt_deaths[dt_deaths$Country %in% countries,]
 dt_deaths_week <- readRDS("data/dt_deaths_week.rda")
 dt_deaths_week <- dt_deaths_week[dt_deaths_week$Country %in% countries,]
 
+# Summary data
+dt_summary <- readRDS("data/dt_summary.rda")
+dt_summary <- dt_summary[dt_summary$Country %in% countries, ]
+
 # CANADA 
 
 # Check Box list provinces
@@ -65,12 +72,16 @@ cdn_day_D <- cdn_day_D[cdn_day_D$Country %in% provinces,]
 cdn_week_D <- readRDS("data/cdn_week_D.rda")
 cdn_week_D <- cdn_week_D[cdn_week_D$Country %in% provinces,]
 
+# Summary data
+dt_summary_cdn <- readRDS("data/dt_summary_cdn.rda")
+dt_summary_cdn <- dt_summary_cdn[dt_summary_cdn$Country %in% provinces, ]
 
+##################################################################
 
-# Plot functions
+### Plot functions
 source("covid_plots.R")
 
-# Load text variables
+### Load text variables
 source("text.R")
 
 
@@ -203,7 +214,10 @@ server <- function(input, output, session) {
       
       
     if(input$tabs == "Canada") {
-        
+      
+      # Summary text
+      text_data = dt_summary_cdn
+      
       if (ch$check == FALSE) {
         # Input on switched tabs
         ch$check <- input$checkGroup_cnd
@@ -229,6 +243,9 @@ server <- function(input, output, session) {
         cases = "Deaths"
       }
     } else {
+      
+      # Summary text
+      text_data = dt_summary
       
       if (ch$check == FALSE) {
         # Input on switched tabs
@@ -259,11 +276,11 @@ server <- function(input, output, session) {
       
         if (input$select_data == 1) {
           isolate({
-          covid_plot_byDay(dataset = dt_day[dt_day$Country %in% check_boxes,], title_caption = fig1_caption, title_type = cases)
+          covid_plot_byDay(dataset = dt_day[dt_day$Country %in% check_boxes,], title_caption = fig1_caption, title_type = cases, text_data = text_data[text_data$Country %in% check_boxes,])
           })
         } else {
           isolate({
-          covid_plot(dataset = dt_week[dt_week$Country %in% check_boxes,], title_caption = fig2_caption, title_type = cases)
+          covid_plot(dataset = dt_week[dt_week$Country %in% check_boxes,], title_caption = fig2_caption, title_type = cases, text_data = text_data[text_data$Country %in% check_boxes,])
           })
         }
     })

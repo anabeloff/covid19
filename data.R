@@ -48,8 +48,30 @@ saveRDS(dtD_D, "dt_deaths.rda")
 saveRDS(dtD, "dt_deaths_week.rda")
 
 message("Death cases saved.\n")
-message("COMPLETE!\n")
 
+
+# Labels data frame
+plot_labels <- function(dt = NA, cases_by = NA) {
+  text_data <- dplyr::group_by(dt,Country) %>%
+    dplyr::summarise(CPD = last(CPD), CPD_sum = last(CPD_sum), 
+                     cases_type = last(cases_type),
+                     cases_by = last(cases_by))
+  return(text_data)
+}
+
+dt_list = list(A = final_dt_day(data_tbl = con_dt, transform = FALSE, cases_type = "Confirmed cases"),
+               B = final_dt_day(data_tbl = con_dtD, transform = FALSE, cases_type = "Deaths"),
+               C = final_dt(data_tbl = con_dt, transform = FALSE, cases_type = "Confirmed cases"),
+               D = final_dt(data_tbl = con_dtD, transform = FALSE, cases_type = "Deaths"))
+
+dt_summary = lapply(dt_list, plot_labels)
+dt_summary = do.call("rbind", dt_summary)
+
+saveRDS(dt_summary, "dt_summary.rda")
+
+
+message("Summary table saved.\n")
+message("COMPLETE!\n")
 
 # CANADA data
 
@@ -77,7 +99,15 @@ cdn_week_D <- final_dt(data_tbl = cdnD)
 saveRDS(cdn_day_D, "cdn_day_D.rda")
 saveRDS(cdn_week_D, "cdn_week_D.rda")
 
+dt_list_cdn = list(A = final_dt_day(data_tbl = cdn, transform = FALSE, cases_type = "Confirmed cases"),
+               B = final_dt_day(data_tbl = cdnD, transform = FALSE, cases_type = "Deaths"),
+               C = final_dt(data_tbl = cdn, transform = FALSE, cases_type = "Confirmed cases"),
+               D = final_dt(data_tbl = cdnD, transform = FALSE, cases_type = "Deaths"))
 
+dt_summary_cdn = lapply(dt_list_cdn, plot_labels)
+dt_summary_cdn = do.call("rbind", dt_summary_cdn)
+
+saveRDS(dt_summary_cdn, "dt_summary_cdn.rda")
 
 message("Canada data saved.\n")
 message("COMPLETE!\n")

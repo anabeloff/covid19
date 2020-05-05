@@ -6,7 +6,9 @@ library(tidyr)
 #################################################
 # Create data frame with week average data points
 
-final_dt <- function(data_tbl = NA) {
+final_dt <- function(data_tbl = NA,
+                     transform = TRUE,
+                     cases_type = NA) {
   data_tbl <- data_tbl %>%
     dplyr::group_by(Country.Region) %>%
     dplyr::summarise_all(list(sum))
@@ -36,8 +38,14 @@ final_dt <- function(data_tbl = NA) {
   dt$days <- gsub(".20$", ".2020", dt$days)
   dt$days <- as.Date(dt$days, "%m.%d.%Y")
   
-  dt <- dplyr::group_by(dt, week = format(days, '%W-%Y', ), Country) %>%
-    dplyr::summarise(CPD_sum = log10(mean(CPD_sum)+1), CPD = log10(mean(abs(CPD))+1), Days = last(days))
+  
+  if(transform == TRUE) {
+    dt <- dplyr::group_by(dt, week = format(days, '%W-%Y', ), Country) %>%
+      dplyr::summarise(CPD_sum = log10(mean(CPD_sum)+1), CPD = log10(mean(abs(CPD))+1), Days = last(days)) 
+  } else {
+    dt <- dplyr::group_by(dt, week = format(days, '%W-%Y', ), Country) %>%
+      dplyr::summarise(CPD_sum = mean(CPD_sum), CPD = mean(abs(CPD)), Days = last(days), cases_type = cases_type, cases_by = "week")
+  }
   
   
   return(dt)
@@ -47,7 +55,9 @@ final_dt <- function(data_tbl = NA) {
 #########################################
 # Create data frame with day data points.
 
-final_dt_day <- function(data_tbl = NA) {
+final_dt_day <- function(data_tbl = NA,
+                         transform = TRUE,
+                         cases_type = NA) {
   data_tbl <- data_tbl %>%
     dplyr::group_by(Country.Region) %>%
     dplyr::summarise_all(list(sum))
@@ -77,8 +87,13 @@ final_dt_day <- function(data_tbl = NA) {
   dt$days <- gsub(".20$", ".2020", dt$days)
   dt$days <- as.Date(dt$days, "%m.%d.%Y")
   
-  dt <- dplyr::group_by(dt, days, Country) %>%
-    dplyr::mutate(CPD_sum = log10(CPD_sum+1), CPD = log10(abs(CPD)+1), Days = days)
+  if(transform == TRUE) {
+    dt <- dplyr::group_by(dt, days, Country) %>%
+      dplyr::mutate(CPD_sum = log10(CPD_sum+1), CPD = log10(abs(CPD)+1), Days = days)
+  } else {
+    dt <- dplyr::group_by(dt, days, Country) %>%
+      dplyr::mutate(CPD_sum = CPD_sum, CPD = abs(CPD), Days = days, cases_type = cases_type, cases_by = "day")
+  }
   
   
   return(dt)
