@@ -99,3 +99,26 @@ final_dt_day <- function(data_tbl = NA,
   return(dt)
 }
 
+#########################################
+# Create summary data frame 
+# by day
+plot_labels_day <- function(dt = NA) {
+  text_data <- dplyr::group_by(dt,Country) %>%
+    dplyr::summarise(CPD = last(CPD), CPD_sum = last(CPD_sum), 
+                     cases_type = last(cases_type),
+                     cases_by = last(cases_by))
+  return(text_data)
+}
+
+# by week
+# here we take mean of last 7 data points 
+# bacause orininal table contains day by day data until week is full.
+
+plot_labels_week <- function(dt = NA) {
+  text_data <- dplyr::group_by(dt,Country) %>%
+    dplyr::summarise(CPD = mean(tail(CPD, 7)), CPD_sum = last(CPD_sum), 
+                     cases_type = last(cases_type),
+                     cases_by = last(cases_by))
+  return(text_data)
+}
+
