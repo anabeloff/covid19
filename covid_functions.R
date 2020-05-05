@@ -117,8 +117,8 @@ plot_labels_day <- function(dt = NA) {
 plot_labels_week <- function(dt = NA) {
   text_data <- dplyr::group_by(dt,Country) %>%
     dplyr::summarise(CPD = mean(tail(CPD, 7)), CPD_sum = last(CPD_sum), 
-                     cases_type = last(cases_type),
-                     cases_by = last(cases_by))
+                     cases_type = last(cases_type)) %>%
+    dplyr::mutate(cases_by = "week")
   return(text_data)
 }
 

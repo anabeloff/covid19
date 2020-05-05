@@ -58,7 +58,8 @@ dt_list = list(A = final_dt_day(data_tbl = con_dt, transform = FALSE, cases_type
                C = final_dt(data_tbl = con_dt, transform = FALSE, cases_type = "Confirmed cases"),
                D = final_dt(data_tbl = con_dtD, transform = FALSE, cases_type = "Deaths"))
 
-dt_summary = c(lapply(dt_list[c("A", "B")], plot_labels_day), lapply(dt_list[c("C", "D")], plot_labels_week))
+#dt_summary = c(lapply(dt_list[c("A", "B")], plot_labels_day), lapply(dt_list[c("C", "D")], plot_labels_week))
+dt_summary = c(lapply(dt_list[c("A", "B")], plot_labels_day), lapply(dt_list[c("A", "B")], plot_labels_week))
 dt_summary = do.call("rbind", dt_summary)
 
 saveRDS(dt_summary, "dt_summary.rda")
@@ -98,7 +99,7 @@ dt_list_cdn = list(A = final_dt_day(data_tbl = cdn, transform = FALSE, cases_typ
                C = final_dt(data_tbl = cdn, transform = FALSE, cases_type = "Confirmed cases"),
                D = final_dt(data_tbl = cdnD, transform = FALSE, cases_type = "Deaths"))
 
-dt_summary_cdn = c(lapply(dt_list_cdn[c("A", "B")], plot_labels_day), lapply(dt_list_cdn[c("C", "D")], plot_labels_week))
+dt_summary_cdn = c(lapply(dt_list_cdn[c("A", "B")], plot_labels_day), lapply(dt_list_cdn[c("A", "B")], plot_labels_week))
 dt_summary_cdn = do.call("rbind", dt_summary_cdn)
 
 saveRDS(dt_summary_cdn, "dt_summary_cdn.rda")
