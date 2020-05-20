@@ -20,7 +20,7 @@ library(shinythemes)
 # Selected countries list.
 countries = c("Canada", "US", "Japan", "Korea, South", "Russia", "Spain", "China", "Thailand", "France", 'Taiwan*', "Italy",
               "Singapore", "United Kingdom", "Germany", "Poland", "Ukraine", "India", "Israel", "Turkey", "Hong Kong",
-              "Brazil", "Egypt", "Cuba", "Laos", "Cambodia", "Nigeria", "Mexico", "Georgia", "Iran", "South Africa", "Finland", "Australia", "New Zealand", "Vietnam")
+              "Brazil", "Egypt", "Cuba", "Laos", "Cambodia", "Nigeria", "Mexico", "Georgia", "Iran", "South Africa", "Finland", "Australia", "New Zealand", "Vietnam", "Sweden")
 countries = sort(countries)
 
 # Check Box list
