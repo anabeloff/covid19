@@ -26,7 +26,7 @@ countries = sort(countries)
 # Check Box list
 checkbox_list <- as.list(countries)
 names(checkbox_list) <- countries
-countries_selected = c("Canada", "US", "Japan", "Korea, South", "Russia", "Brazil", "China", "India", "Sweden")
+countries_selected = c("Canada", "US", "Japan", "Korea, South", "Russia", "Brazil", "United Kingdom", "India", "Sweden")
 
 # Load data
 # Cases by day
