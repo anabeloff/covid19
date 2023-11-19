@@ -218,7 +218,7 @@ server <- function(input, output, session) {
       # Summary text
       text_data = dt_summary_cdn
       
-      if (ch$check == FALSE) {
+      if (isFALSE(ch$check)) {
         # Input on switched tabs
         ch$check <- input$checkGroup_cnd
         # 
@@ -247,7 +247,7 @@ server <- function(input, output, session) {
       # Summary text
       text_data = dt_summary
       
-      if (ch$check == FALSE) {
+      if (isFALSE(ch$check)) {
         # Input on switched tabs
         ch$check <- input$checkGroup
         # 
